@@ -1,0 +1,30 @@
+---
+# Tâche: configuration minimale des quotas disque pour le groupe d'étudiants
+# Cette implémentation est minimale et vérifie la présence de l'outil 'setquota'.
+- name: "Vérifier que le paquet 'quota' est installé"
+  package:
+    name: quota
+    state: present
+  when: ansible_os_family == 'Debian' or ansible_os_family == 'RedHat'
+
+- name: "Créer un fichier de log pour les quotas"
+  file:
+    path: /var/log/ansible/user_creation.log
+    state: touch
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: "Activer et initialiser les quotas (si supportés)"
+  block:
+    - name: "S'assurer que quotaon est disponible"
+      command: which quotaon
+      register: quotaon_check
+      ignore_errors: yes
+
+    - name: "Initialiser les quotas (commande simulée si quotaon absent)"
+      command: "quotacheck -cum / || true"
+      when: quotaon_check.rc == 0
+      ignore_errors: yes
+
+  when: quota_support | default(true)

@@ -1,0 +1,4 @@
+---
+# Ansible collections required for this playbook
+collections:
+  - name: community.general

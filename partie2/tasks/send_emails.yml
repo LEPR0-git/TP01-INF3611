@@ -1,0 +1,34 @@
+---
+---
+# Tâche: envoi d'emails de notification aux étudiants via SMTP authentifié
+# Utilise la collection `community.general` (module `smtp`).
+
+- name: "Construire la liste d'adresses"
+  set_fact:
+    student_emails: "{{ students | map(attribute='email') | list }}"
+
+- name: "Envoyer un email via SMTP authentifié (community.general.smtp)"
+  community.general.smtp:
+    host: "{{ smtp_server }}"
+    port: "{{ smtp_port }}"
+    username: "{{ smtp_username }}"
+    password: "{{ smtp_password }}"
+    starttls: "{{ smtp_use_tls | default(true) }}"
+    mail_from: "{{ mail_from | default(smtp_username) }}"
+    mail_to: "{{ item }}"
+    subject: "{{ mail_subject | default('Compte créé') }}"
+    body: |
+      Bonjour,
+
+      Votre compte a été créé sur le serveur de TP.
+
+      Identifiant: {{ item }}
+
+      Cordialement.
+  loop: "{{ student_emails }}"
+  when: smtp_username is defined and smtp_password is defined
+
+- name: "Info: SMTP non configuré, email ignoré"
+  debug:
+    msg: "SMTP non configuré — pas d'envoi d'email."
+  when: not (smtp_username is defined and smtp_password is defined)

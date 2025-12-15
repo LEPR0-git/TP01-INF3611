@@ -1,0 +1,51 @@
+---
+# ==============================================================================
+# TP Administration Systèmes - Données utilisateurs (YAML)
+# Pour utilisation avec Ansible
+# ==============================================================================
+
+students:
+  - username: "etudiant1"
+    password: "Passw0rd123!"
+    full_name: "Jean Dupont"
+    phone: "+237 6XX XX XX XX"
+    email: "jean.dupont@univ-yaounde1.cm"
+    preferred_shell: "/bin/bash"
+    
+  - username: "etudiant2"
+    password: "TempPass456!"
+    full_name: "Marie Curie"
+    phone: "+237 6YY YY YY YY"
+    email: "marie.curie@univ-yaounde1.cm"
+    preferred_shell: "/bin/sh"
+    
+  - username: "etudiant3"
+    password: "Init789$Pass"
+    full_name: "Pierre Durand"
+    phone: "+237 6ZZ ZZ ZZ ZZ"
+    email: "pierre.durand@univ-yaounde1.cm"
+    preferred_shell: "/bin/dash"
+    
+  - username: "etudiant4"
+    password: "ChangeMe321!"
+    full_name: "Alice Martin"
+    phone: "+237 6AA AA AA AA"
+    email: "alice.martin@univ-yaounde1.cm"
+    preferred_shell: "/bin/bash"
+    
+  - username: "etudiant5"
+    password: "FirstLogin555"
+    full_name: "Paul Bernard"
+    phone: "+237 6BB BB BB BB"
+    email: "paul.bernard@univ-yaounde1.cm"
+    preferred_shell: "/bin/bash"
+
+# Utilisateur administrateur
+admin_users:
+  - username: "admin"
+    password: "AdminSecure789!"
+    full_name: "Admin System"
+    phone: "+237 6CC CC CC CC"
+    email: "admin@univ-yaounde1.cm"
+    preferred_shell: "/bin/bash"
+    groups: ["sudo", "admin"]

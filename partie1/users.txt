@@ -1,0 +1,14 @@
+# ==============================================================================
+# TP Administration Systèmes - Fichier des utilisateurs
+# Format: username;password;full_name;phone;email;preferred_shell
+# ==============================================================================
+
+# Étudiants - Groupe INF 3611
+etudiant1;Passw0rd123!;Jean Dupont;+237 6XX XX XX XX;jean.dupont@univ-yaounde1.cm;/bin/bash
+etudiant2;TempPass456!;Marie Curie;+237 6YY YY YY YY;marie.curie@univ-yaounde1.cm;/bin/zsh
+etudiant3;Init789$Pass;Pierre Durand;+237 6ZZ ZZ ZZ ZZ;pierre.durand@univ-yaounde1.cm;/bin/fish
+etudiant4;ChangeMe321!;Alice Martin;+237 6AA AA AA AA;alice.martin@univ-yaounde1.cm;/bin/bash
+etudiant5;FirstLogin555;Paul Bernard;+237 6BB BB BB BB;paul.bernard@univ-yaounde1.cm;/bin/bash
+
+# Administrateurs
+admin;AdminSecure789!;Admin System;+237 6CC CC CC CC;admin@univ-yaounde1.cm;/bin/bash

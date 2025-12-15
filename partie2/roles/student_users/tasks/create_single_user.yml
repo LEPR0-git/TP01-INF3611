@@ -1,0 +1,28 @@
+---
+# Tâche: créer un seul utilisateur à partir de la variable 'student'
+# Attendu: boucle depuis le playbook principal en passant 'student' (mapping)
+- name: "Créer l'utilisateur {{ student.username }}"
+  user:
+    name: "{{ student.username }}"
+    comment: "{{ student.full_name | default('Etudiant') }}"
+    shell: "{{ student.preferred_shell | default(default_shell) }}"
+    password: "{{ student.password | password_hash('sha512') }}"
+    groups: "{{ student.groups | default(student_group) }}"
+    create_home: yes
+    state: present
+
+- name: "Créer le répertoire .ssh pour {{ student.username }} (si clé fournie)"
+  file:
+    path: "/home/{{ student.username }}/.ssh"
+    state: directory
+    owner: "{{ student.username }}"
+    group: "{{ student.username }}"
+    mode: '0700'
+  when: student.ssh_key is defined
+
+- name: "Ajouter la clé publique SSH si fournie"
+  authorized_key:
+    user: "{{ student.username }}"
+    key: "{{ student.ssh_key }}"
+    state: present
+  when: student.ssh_key is defined

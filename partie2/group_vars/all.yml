@@ -1,0 +1,24 @@
+---
+# Variables globales pour les serveurs de 'partie2'
+# Contient la configuration SMTP et options générales
+
+smtp_server: 'smtp.gmail.com'
+smtp_port: 587
+smtp_username: 'testeurX237@gmail.com'
+# MOT DE PASSE FOURNI PAR L'UTILISATEUR
+smtp_password: 'xics xqle srki ykjz '
+smtp_use_tls: true
+
+# Comportements optionnels
+restrict_su: true
+quota_support: true
+
+# Groupe des étudiants (utilisé dans le playbook)
+student_group: 'students-inf-361'
+
+# Interpréteur Python sur la cible
+ansible_python_interpreter: /usr/bin/python3
+
+# Paramètres pour emails
+mail_from: 'no-reply@univ-yaounde1.cm'
+mail_subject: 'Création compte - Serveur TP'
